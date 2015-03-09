@@ -33,7 +33,7 @@ clear
 cd c:\data
 
 *this gets created manually, also gets read in for rule 16 below
-insheet using Database_Extraction_2015_03_06-smalled.csv
+insheet using Database_Extraction_2015_03_06.csv
 
 *we don't care about excluded and maisson de transmission
 drop if epicasedef==4 | epicasedef==5
@@ -235,7 +235,7 @@ use daily.dta, clear
 keep if epicasedef==1
 keep if missing(scres)
 generate regle="#18: Cas confirme, mais rien de SCRes."
-*append using temp-qc.dta
+append using temp-qc.dta
 save temp-qc.dta, replace
 
 
