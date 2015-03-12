@@ -10,8 +10,8 @@ GO
 
 ALTER VIEW [dbo].[DBExtractView]
 AS
-SELECT        dbo.Database_Extraction_2015_03_08$.*
-FROM            dbo.Database_Extraction_2015_03_08$
+SELECT        dbo.Database_Extraction_2015_03_10$.*
+FROM            dbo.Database_Extraction_2015_03_10$
 
 GO
 

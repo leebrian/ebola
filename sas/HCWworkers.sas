@@ -1,6 +1,6 @@
 /*
-to be run on Mar09 using the Mar08 extract
-previously run on Mar05 using the Mar04 extract
+to be run on Mar11 using the Mar10 extract
+previously run on Mar09 using the Mar08 extract
 */
 
 dm 'cle log; cle out';
@@ -40,8 +40,8 @@ put "***RUN DATE= " tempdate /"***RUN TIME = " temptime "Eastern Time";
 run;
 
 title1 		 "Health Care facilities list";
-title2		 "List generated based on Mar 08, 2015 EpiInfo dataset";
-title3		 "Includes comparisons with Mar 04, 2015 EpiInfo dataset";
+title2		 "List generated based on Mar 10, 2015 EpiInfo dataset";
+title3		 "Includes comparisons with Mar 08, 2015 EpiInfo dataset";
 
 footnote1    "Program:  &program";
 *footnote2    Input:   ";
@@ -76,14 +76,14 @@ run;
 
 
 data HCWworkers_current;
- set saslib.mar08;
+ set saslib.mar10;
 if HCW='True' and EpiCaseDef in (1,2,3) then HCWflag='1';
  HCWpositiontrim=trim(HCWposition);
   *if HCW='1' and EpiCaseDef in (1,2,3) then HCWflag=1;  *coding of HCW has changed from 1 to True;
 run;
 
 data HCWworkers_previousday;
- set saslib.mar04;
+ set saslib.mar08;
 
 run;
 
@@ -115,7 +115,7 @@ ods listing;
 
 run;
 
-ods rtf file="C:\sas\output\HCWworkers_08mar.rtf" STYLE=journal nobodytitle;
+ods rtf file="C:\sas\output\HCWworkers_10mar.rtf" STYLE=journal nobodytitle;
 
 ods listing close;
 
