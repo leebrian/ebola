@@ -294,7 +294,6 @@ keep if tag>0
 sort id
 generate regle="#16: Les duplicates exist dans le db pour ID."
 generate datereport_calc = date(substr(datereport,1,length(datereport)-4),"mdy")
-*generate datereport_calc = date(datereport, "dmy")
 format datereport_calc %d
 drop datereport
 rename datereport_calc datereport
