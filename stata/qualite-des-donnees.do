@@ -4,7 +4,13 @@ Reads in the daily extract Excel file and performs a number of checks for data m
 Note: imports csv rather than Excel as stata8 doesn't support excel import
 Initial version created 6/3/2015 brian.a.lee@gmail.com
 
-Rules:
+Input:
+Daily extract file called "Database_Extraction.csv" in the c:\data folder
+
+Output:
+"pour-examen.csv" file in the c:\data folder containing items for review by data management team
+
+Rules checked:
 #01-if epicasedef is non, probable or suspect (0,2,3) then there should be no confirmed labs
 #02-if epicasedef is non, probable or suspect (0,2,3) then finallabclass should not be 1
 #03-if epicasedef is confirmed (1), then there should be at least one confirmed lab specimin 
@@ -32,7 +38,7 @@ set memory 40M
 cd c:\data
 
 *this gets created manually, also gets read in for rule 16 below
-insheet using Database_Extraction_2015_03_10.csv
+insheet using Database_Extraction.csv
 
 *we don't care about excluded and maisson de transmission
 drop if epicasedef==4 | epicasedef==5
@@ -288,7 +294,7 @@ save temp-qc.dta, replace
 
 *rule #16- check for duplicates by ID
 *this is a little different because for this one, I do care about excludes and chains of transmissions
-insheet using Database_Extraction_2015_03_10.csv, clear
+insheet using Database_Extraction.csv, clear
 duplicates tag id, generate(tag)
 keep if tag>0
 sort id

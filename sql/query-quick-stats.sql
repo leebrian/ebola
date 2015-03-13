@@ -1,7 +1,7 @@
 Use EbolaQC
 
 --display the current day of the import
-select max(datereport) as 'LatestImport' from DBExtractView
+select max(datereport) as 'LatestImport' from DBExtractView where epicasedef in (0,1,2,3)
 GO
 
 /*
@@ -19,6 +19,6 @@ quick check by district
 select epicasedef, districtres, count(*)
  from DBExtractView
  where epicasedef in (1,2,3)
-	and datereport = (select max(datereport) from DBExtractView)
+	and datereport = (select max(datereport) from DBExtractView where epicasedef in (1,2,3))
  group by rollup(epicasedef, districtres)
  order by districtres asc
