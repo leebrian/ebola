@@ -62,6 +62,15 @@ Columns(topRow.Find(What:="DateSampleTested6").Column).NumberFormat = "m/dd/yyyy
 Columns(topRow.Find(What:="DateSampleCollected7").Column).NumberFormat = "m/dd/yyyy"
 Columns(topRow.Find(What:="DateSampleTested7").Column).NumberFormat = "m/dd/yyyy"
 
+'SAS seems confused by some of the blank columns, so I'm manually setting them to their appropriate values
+Columns(topRow.Find(What:="SurnameLab3").Column).NumberFormat = "@"
+Columns(topRow.Find(What:="OtherNameLab3").Column).NumberFormat = "@"
+Columns(topRow.Find(What:="SurnameLab4").Column).NumberFormat = "@"
+Columns(topRow.Find(What:="OtherNameLab4").Column).NumberFormat = "@"
+Columns(topRow.Find(What:="SurnameLab5").Column).NumberFormat = "@"
+Columns(topRow.Find(What:="SurnameLab6").Column).NumberFormat = "@"
+Columns(topRow.Find(What:="SurnameLab6").Column).NumberFormat = "@"
+
 ActiveWorkbook.Save
 
 End Sub
