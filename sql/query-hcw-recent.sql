@@ -10,8 +10,9 @@ select count(*)
 
 /*
 quick query to check recent healthcare workers as confirmed or probable
+The alias for datereport in the select clause is because I still want to sort by datereport and don't know how to do that.
 */
-select DateOnset, DateReport, ID, EpiCaseDef, age, Surname, OtherNames, HCWposition, DistrictRes from DBExtractView
+select convert(varchar,DateOnset,3) as DateOnset, convert(varchar,DateReport,3) as ReportedDate, ID, EpiCaseDef, Age, case when gender = 1 then 'H' when gender = 2 then 'F' end as Gender, Surname, OtherNames, HCWposition, HCWFacility, DistrictRes from DBExtractView
  where HCW = 'True'
  and EpiCaseDef in (1,2,3)
  order by DateReport desc
