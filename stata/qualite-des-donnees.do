@@ -56,6 +56,9 @@ format datereport_calc %d
 drop datereport
 rename datereport_calc datereport
 
+*OMS would like to focus on recent records for review, only show 2015
+keep if datereport >= mdy(1,1,2015)
+
 generate datedeath_calc = date(substr(datedeath,1,length(datedeath)-4),"mdy")
 *generate datedeath_calc = date(datedeath, "dmy")
 format datedeath_calc %d
@@ -295,14 +298,15 @@ save temp-qc.dta, replace
 *rule #16- check for duplicates by ID
 *this is a little different because for this one, I do care about excludes and chains of transmissions
 insheet using Database_Extraction.csv, clear
-duplicates tag id, generate(tag)
-keep if tag>0
-sort id
-generate regle="#16: Les duplicates exist dans le db pour ID."
 generate datereport_calc = date(substr(datereport,1,length(datereport)-4),"mdy")
 format datereport_calc %d
 drop datereport
 rename datereport_calc datereport
+keep if datereport >= mdy(1,1,2015)
+duplicates tag id, generate(tag)
+keep if tag>0
+sort id
+generate regle="#16: Les duplicates exist dans le db pour ID."
 append using temp-qc.dta
 save temp-qc.dta, replace
 
