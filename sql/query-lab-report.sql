@@ -161,6 +161,34 @@ select
  order by lrf7.SurnameLab desc
 
  /*
+ look for confirmed labs that are not confirmed cases
+ */
+ select
+ 	convert(varchar,lrf7.DateSampleCollected,3) as DateSampleCollected, 
+	convert(varchar,lrf7.DateSampleTested,3) as DateSampleTested, 
+	lrf7.SurnameLab, 
+	lrf7.OtherNameLab, 
+	lrf7.AgeLab, 
+	lrf7.SampleType, 
+	lrf7.SampleInterpret, 
+	lrf7.FieldLabSpecID, 
+	lrf7.ID,
+	convert(varchar,lrf.LastSaveTime,113) as LastSaveTime,
+	lrf.LastSaveLogonName
+ from LaboratoryResultsForm lrf
+ left outer join CaseInformationForm cif
+	on lrf.FKEY = cif.GlobalRecordId
+ inner join LaboratoryResultsForm7 lrf7
+	on lrf.GlobalRecordId  = lrf7.GlobalRecordId
+ left outer join CaseInformationForm1 cif1
+	on lrf7.ID = cif1.ID
+ where cif.GlobalRecordId is null
+	and lrf7.SampleInterpret = 1
+	and isnull(cif1.EpiCaseDef,-1) not in (1)
+ order by convert(varchar,lrf7.DateSampleCollected,112) desc
+
+
+ /*
  look for confirmed labs that are linked by ID (not GlobalRecordId) to cases that exist, but are not 1
  */
  select 
@@ -240,5 +268,3 @@ select
  where cif.GlobalRecordId is null
 	and cif1.ID is not null
  order by convert(varchar,lrf7.DateSampleCollected,112) desc
- 
-
