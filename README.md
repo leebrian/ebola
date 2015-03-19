@@ -11,7 +11,7 @@ Anyone is encouraged to contribute to the project by [forking](https://help.gith
 
 By contributing to this project, you grant a world-wide, royalty-free, perpetual, irrevocable, non-exclusive, transferable license to all users under the terms of the [Apache Software License v2](http://www.apache.org/licenses/LICENSE-2.0.html) or later.
 
-All comments, messages, pull requests, and other submissions received through CDC and PHIResearchLab.org pages including this GitHub page are subject to the Presidential Records Act and may be archived. Learn more http://cdc.gov/privacy
+All comments, messages, pull requests, and other submissions received through CDC and PHIResearchLab.org pages including this GitHub page are subject to the Presidential Records Act and may be archived. This page is subject the CDC privacy policy. Learn more http://www.cdc.gov/other/privacy.html
 
 ## License
 
