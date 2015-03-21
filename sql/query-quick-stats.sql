@@ -1,7 +1,7 @@
 Use EbolaQC
 
 --display the current day of the import
-select max(datereport) as 'LatestImport' from DBExtractView where epicasedef in (0,1,2,3)
+select convert(date,max(datereport)) as 'LatestImport' from DBExtractView where epicasedef in (0,1,2,3)
 GO
 
 select count(*) as Total,
